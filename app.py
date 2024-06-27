@@ -9,8 +9,7 @@ def generate_response(user_input: str):
         response = st.session_state.conversation({"question": user_input})
         return response['answer']
     else:
-        st.error("Please upload and process a PDF file before asking a question.")
-        return None
+        return "Please upload and process a PDF file before asking a question."
 
 def main():
     st.set_page_config(page_title='Local file Chatbot')
@@ -34,17 +33,17 @@ def main():
             st.write(message["content"])
             
     if prompt := st.chat_input():
-        st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
+        st.session_state.messages.append({"role": "user", "content": prompt})
             
         if st.session_state.messages[-1]["role"] != "assistant":
             with st.chat_message("assistant"):
+                placeholder = st.empty()
                 with st.spinner("Thinking..."):
-                    response = generate_response(prompt) 
-                    st.write(response)
-            message = {"role": "assistant", "content": response}
-            st.session_state.messages.append(message)
+                    response = generate_response(prompt)
+                    placeholder.write(response)
+            st.session_state.messages.append({"role": "assistant", "content": response})
             
     with st.sidebar:
         st.header('Documents')
@@ -52,26 +51,23 @@ def main():
         
         if uploaded_file and uploaded_file != st.session_state.uploaded_file:
             st.session_state.uploaded_file = uploaded_file
-            st.session_state.file_processed = False  # Reset the flag when a new file is uploaded
+            st.session_state.file_processed = False
             
-            # Read the file into a bytes stream
             bytes_data = uploaded_file.getvalue()
             file_stream = io.BytesIO(bytes_data)
             
             with st.spinner('Processing'):
-                # Process the PDF directly from the bytes stream
                 documents = load_documents(file_stream)
                 if not documents:
                     st.error("No content could be loaded from the PDF.")
                 else:
-                    # Split documents
                     document_chunks = split_documents(documents)
                     if document_chunks:
                         try:
                             vectorstore = add_to_db(document_chunks)
                             conversation_retriever = vectorstore.as_retriever()
                             st.session_state.conversation = get_conversation_chain(conversation_retriever)
-                            st.session_state.file_processed = True  # Set the flag when processing is complete
+                            st.session_state.file_processed = True
                             st.success('File successfully uploaded and processed')
 
                         except Exception as X:

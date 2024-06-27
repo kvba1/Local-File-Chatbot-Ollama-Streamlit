@@ -1,8 +1,6 @@
-from langchain.vectorstores.chroma import Chroma
 from langchain_community.llms.ollama import Ollama
 from langchain.memory import ConversationBufferMemory
 from langchain.chains.conversational_retrieval.base import ConversationalRetrievalChain
-from embedding import get_embedding_function
 
 model_name = 'llama3'
 

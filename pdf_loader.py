@@ -1,6 +1,5 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.schema.document import Document
-#from langchain_community.document_loaders import PyMuPDFLoader
 from PyPDF2 import PdfReader
 
 def load_documents(file_stream):
