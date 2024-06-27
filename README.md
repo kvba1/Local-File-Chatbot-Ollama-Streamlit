@@ -5,7 +5,7 @@ The Local File Chatbot is a Streamlit-based application that allows users to int
 
 ## Overview
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zi28fqngFE4/0.jpg)](https://www.youtube.com/watch?v=zi28fqngFE4)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ySqWSsWC9iM/0.jpg)](https://www.youtube.com/watch?v=ySqWSsWC9iM)
 
 ## Installation
 
