@@ -3,6 +3,9 @@
 
 The Local File Chatbot is a Streamlit-based application that allows users to interact with their local PDF files through a chatbot interface. The chatbot can answer questions about the contents of the uploaded PDF files, making it a useful tool for extracting and querying information from documents.
 
+## Overview
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zi28fqngFE4/0.jpg)](https://www.youtube.com/watch?v=zi28fqngFE4)
 
 ## Installation
 
