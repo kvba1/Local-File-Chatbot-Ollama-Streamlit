@@ -35,3 +35,6 @@ Run the project with:
 ```bash
   streamlit run app.py
 ```
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
